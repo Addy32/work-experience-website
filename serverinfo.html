@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="serverinfo.css" />
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,10 +22,13 @@
       integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
       crossorigin="anonymous"
     ></script>
+    <script>
+      var server = "";
+    </script>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#" style="color: #0073e6;">Apex stats</a>
+        <a class="navbar-brand" href="index.html" style="color: #0073e6;">Apex stats</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -44,7 +48,7 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="serverinfo.html">Link</a>
+              <a class="nav-link" href="serverinfo.html">Server Info</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -55,7 +59,7 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Dropdown
+                menu
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -70,6 +74,55 @@
         </div>
       </div>
     </nav>
-    <p>askjhfkashgf</p>
+    <div id="header">
+        <h1>SERVER STATUS</h1>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary" type="button" onclick="api()">test</button>
+            <div class="dropdown">
+                <button
+                  class="btn btn-secondary dropdown-toggle d-grid gap-2 col-6 mx-auto"
+                  type="button"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  server selector
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      id="location"
+                      onClick="document.getElementById('dropdownMenuButton1').innerHTML='Asia';"
+                      >Asia</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" id="location" onClick="document.getElementById('dropdownMenuButton1').innerHTML='US-East';""
+                      >US-East</a
+                    >
+                  </li>
+                  <li><a class="dropdown-item" onClick="document.getElementById('dropdownMenuButton1').innerHTML='SouthAmerica';" >South America</a></li>
+                </ul>
+              </div>
+          </div>
+
+          <h4 id="demo"></h4>
+    </div>
+    
+    <script>
+      function api() {
+        server = document.getElementById("dropdownMenuButton1").innerHTML;
+        fetch("https://api.mozambiquehe.re/servers?auth=NhNqDpVytHqJxUoy0izb")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(server);
+            const ServerStatus = data.Origin_login[server].Status;
+            document.getElementById("demo").innerHTML = `The ${server} server is ${ServerStatus} with a responce time of ${data.Origin_login[server].ResponseTime} ms`;
+            console.log(data.Origin_login[server]);
+          });
+      }
+    </script>
+
   </body>
 </html>

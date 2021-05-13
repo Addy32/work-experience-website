@@ -1,0 +1,54 @@
+#header {
+  height: auto;
+  padding: 100px 100px;
+  color: white;
+  align-self: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+h1 {
+  color: white;
+  font-family: Arial;
+  text-align: center;
+}
+
+#playername {
+  color: black;
+  font-weight: bold;
+}
+
+#lable {
+  color: block;
+  font-weight: bold;
+}
+
+#banner {
+  width: 120px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.body {
+  position: relative;
+  padding-left: 140px;
+}
+
+#user {
+  font-size: 30px;
+}
+
+#stats {
+  background-color: #adffed;
+  padding: 30px 30px;
+  margin-top: 50px;
+  border-radius: 10px;
+}
+
+#rankimg {
+  width: 120px;
+  position: absolute;
+  left: 0px;
+  top: 245px;
+}

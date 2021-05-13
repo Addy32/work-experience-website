@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+      crossorigin="anonymous"
+    />
+
+    <title>apex stats</title>
+  </head>
+  <body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+      crossorigin="anonymous"
+    ></script>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html" style="color: #0073e6;"
+          >Apex stats</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="serverinfo.html">Server Info</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div
+      id="header"
+      style="
+        background: url(https://api.mozambiquehe.re/assets/banners/pathfinder.jpg);
+      "
+    >
+      <label for="playername" class="form-label" id="lable">Player name</label>
+      <input
+        type="input"
+        id="playername"
+        class="form-control"
+        aria-describedby="passwordHelpBlock"
+      />
+      <div id="label">
+        enter you origan name. MUST NOT BE YOUR STEAM USERNAME
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        style="position: relative; top: 25px;"
+        onclick="player()"
+      >
+        check player
+      </button>
+    </div>
+    <div class="container-md body">
+      <h5 id="user" style="position: relative; top: 30px;">username</h5>
+      <p style="position: relative; top: 25px;" id="online">online:</p>
+      <p style="position: relative; top: 25px;" id="platform">platform:</p>
+      <p style="position: relative; top: 25px;" id="legend">current legend:</p>
+      <p style="position: relative; top: 25px;" id="game">in game:</p>
+      <img id="banner" alt="loading" />
+      <div class="container-md" id="stats">
+        <p id="level">Level:</p>
+        <p id="rank">rank:</p>
+        <p id="kills">kills:</p>
+        <img id="rankimg" alt="loading" />
+      </div>
+    </div>
+
+    <script>
+      function player() {
+        fetch(
+          `https://api.mozambiquehe.re/bridge?version=5&platform=PC&player=${
+            document.getElementById("playername").value
+          }&auth=NhNqDpVytHqJxUoy0izb`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            const playerstats = data;
+            console.log(document.getElementById("user").innerHTML);
+            console.log(playerstats);
+            if (playerstats.Error) return;
+            if (playerstats.realtime.isOnline == 1) {
+              document.getElementById("online").innerHTML = "online: yes";
+            } else {
+              document.getElementById("online").innerHTML = "online: no";
+            }
+            document.getElementById(
+              "platform"
+            ).innerHTML = `platform: ${playerstats.global.platform}`;
+            document.getElementById(
+              "legend"
+            ).innerHTML = `current legend: ${playerstats.realtime.selectedLegend}`;
+
+            if (playerstats.realtime.isInGame == 1) {
+              document.getElementById("game").innerHTML = "in game: yes";
+            } else {
+              document.getElementById("game").innerHTML = "in game: no";
+            }
+            document.getElementById("user").innerHTML = playerstats.global.name;
+
+            document.getElementById("banner").src =
+              playerstats.legends.selected.ImgAssets.icon;
+            document.getElementById(
+              "header"
+            ).style = `background: url(${playerstats.legends.selected.ImgAssets.banner});`;
+            //second container
+            document.getElementById(
+              "level"
+            ).innerHTML = `Level: ${playerstats.global.level}`;
+            document.getElementById(
+              "rank"
+            ).innerHTML = `Rank: ${playerstats.global.rank.rankName}`;
+            document.getElementById("rankimg").src =
+              playerstats.global.rank.rankImg;
+            document.getElementById(
+              "kills"
+            ).innerHTML = `kills: ${playerstats.total.kills.value}`;
+          });
+      }
+    </script>
+  </body>
+</html>

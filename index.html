@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
+    <link rel="stylesheet" href="index.css" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -58,7 +59,7 @@
                 Dropdown
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">player stats</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
@@ -71,15 +72,41 @@
       </div>
     </nav>
 
-    <div class="card" style="width: 18rem;">
-      <img src="images/placeholder.png" class="card-img-top" alt="blank" />
-      <div class="card-body">
-        <h5 class="card-title">Apex server status</h5>
-        <p class="card-text">
-          this tool will show where the servers are running and where they are
-          down
-        </p>
-        <a href="serverinfo.html" class="btn btn-primary">Go there</a>
+    <div class="row" style="padding: 20px;">
+      <div class="col-sm-6">
+        <div class="card">
+          <img
+            src="images/placeholder.png"
+            class="card-img-top"
+            alt="..."
+            style="width: 400px;"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Apex Server Status</h5>
+            <p class="card-text">
+              This is a place to see if you can play on the servers in your area
+            </p>
+            <a href="serverinfo.html" class="btn btn-primary">Go There</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <img
+            src="https://api.mozambiquehe.re/assets/icons/pathfinder.png"
+            class="card-img-top"
+            alt="..."
+            style="width: 400px;"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Apex Player Stats</h5>
+            <p class="card-text">
+              This is a place to see player stats from apex legends including
+              kills and current legend
+            </p>
+            <a href="playerinfo.html" class="btn btn-primary">Go There</a>
+          </div>
+        </div>
       </div>
     </div>
   </body>
