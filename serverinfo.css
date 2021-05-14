@@ -1,6 +1,6 @@
 #header {
   background: #664c8f;
-  height: auto;
+  height: 350px;
   padding: 100px 100px;
 }
 h1 {
@@ -13,7 +13,7 @@ h1 {
   text-align: center;
   width: 150px;
   margin: 0px auto;
-  padding: 20px;
+  padding: 30px;
   color: white;
   text-transform: uppercase;
   font-family: Arial;
@@ -26,6 +26,7 @@ h1 {
   text-align: center;
   color: white;
   font-weight: 450;
+  padding: 20px;
 }
 
 body {

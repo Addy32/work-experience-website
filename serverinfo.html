@@ -14,7 +14,7 @@
       crossorigin="anonymous"
     />
 
-    <title>Hello, world!</title>
+    <title>Server status</title>
   </head>
   <body>
     <script
@@ -50,33 +50,17 @@
             <li class="nav-item">
               <a class="nav-link" href="serverinfo.html">Server Info</a>
             </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                menu
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="playerinfo.html">Player Info</a>
+          </li>
           </ul>
         </div>
       </div>
     </nav>
     <div id="header">
         <h1>SERVER STATUS</h1>
-        <div class="d-grid gap-2 col-6 mx-auto">
+        <div class="d-grid gap-2 col-10 mx-auto">
             <button class="btn btn-primary" type="button" onclick="api()">test</button>
             <div class="dropdown">
                 <button
@@ -84,7 +68,7 @@
                   type="button"
                   id="dropdownMenuButton1"
                   data-bs-toggle="dropdown"
-                  aria-expanded="false"
+                  aria-expanded="true"
                 >
                   server selector
                 </button>
@@ -103,6 +87,9 @@
                     >
                   </li>
                   <li><a class="dropdown-item" onClick="document.getElementById('dropdownMenuButton1').innerHTML='SouthAmerica';" >South America</a></li>
+                  <li><a class="dropdown-item" onClick="document.getElementById('dropdownMenuButton1').innerHTML='EU-West';" >EW West</a></li>
+                  <li><a class="dropdown-item" onClick="document.getElementById('dropdownMenuButton1').innerHTML='US-Central';" >US central</a></li>
+                  <li><a class="dropdown-item" onClick="document.getElementById('dropdownMenuButton1').innerHTML='US-West';" >US West</a></li>
                 </ul>
               </div>
           </div>
@@ -119,7 +106,7 @@
             console.log(server);
             const ServerStatus = data.Origin_login[server].Status;
             document.getElementById("demo").innerHTML = `The ${server} server is ${ServerStatus} with a responce time of ${data.Origin_login[server].ResponseTime} ms`;
-            console.log(data.Origin_login[server]);
+            console.log(data);
           });
       }
     </script>
