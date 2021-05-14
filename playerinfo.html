@@ -94,7 +94,7 @@
         <p id="level">Level:</p>
         <p id="rank">rank:</p>
         <p id="kills">kills:</p>
-        <img id="rankimg" alt="loading" />
+        <img class="stats" id="rankimg" alt="loading" />
       </div>
     </div>
 
@@ -108,9 +108,11 @@
           .then((response) => response.json())
           .then((data) => {
             const playerstats = data;
-            console.log(document.getElementById("user").innerHTML);
             console.log(playerstats);
-            if (playerstats.Error) return;
+            if (playerstats.Error) {
+              document.getElementById("user").innerHTML = "User not found";
+              return;
+            }
             if (playerstats.realtime.isOnline == 1) {
               document.getElementById("online").innerHTML = "online: yes";
             } else {
